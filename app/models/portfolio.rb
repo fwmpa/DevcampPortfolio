@@ -1,5 +1,10 @@
 class Portfolio < ApplicationRecord
     has_many :technologies
+    #allows to create new instantes of Technoloy from Portfolio
+    #use technologies_attributes: [{name: "Ruby"}, {name: "foo"}, {name: "bar"}] to create 3 new technologies named Ruby, foo, bar
+    accepts_nested_attributes_for :technologies, #accepts if att:name is not blank
+                                    reject_if: lambda { |attrs| attrs['name'].blank? }
+
     include Placeholder
     validates_presence_of :title, :body, :main_image, :thumb_image
 
