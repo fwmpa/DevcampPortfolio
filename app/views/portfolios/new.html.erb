@@ -1,7 +1,7 @@
 <h1>Create a new Portfolio Item</h1>
 
 <%= form_for(@portfolio_item) do |f| %>
-  
+
   <div>
     <%= f.label :title, style: "display: block" %>
     <%= f.text_field :title %>
@@ -16,6 +16,16 @@
     <%= f.label :body, style: "display: block" %>
     <%= f.text_area :body %>
   </div>
+
+  <ul>
+    <!-- creates nested forms for technologies attributes -->
+    <%= f.fields_for :technologies do |techonoly_form| %>
+      <li>
+        <%= techonoly_form.label :name%>
+        <%= techonoly_form.text_field :name%>
+      </li>
+    <% end %>
+  </ul>
 
   <div>
     <%= f.submit %>
