@@ -18,8 +18,7 @@ class PortfoliosController < ApplicationController
 
   def create
     @portfolio_item =
-      Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body,
-        technologies_attributes: [:name]))
+      Portfolio.new(portfolio_params)
         #allows to receive name attribute from techonologies 
 
     respond_to do |format|
@@ -41,9 +40,7 @@ class PortfoliosController < ApplicationController
     @portfolio_item = Portfolio.find(params[:id])
 
     respond_to do |format|
-      if @portfolio_item.update(
-          params.require(:portfolio).permit(:title, :subtitle, :body),
-          )
+      if @portfolio_item.update(portfolio_params)
         format.html do
           redirect_to portfolios_path, notice: 'Your post is now updated. '
         end
@@ -65,4 +62,14 @@ class PortfoliosController < ApplicationController
       format.html { redirect_to portfolios_path, notice: 'Record was successfully destroyed.' }
     end
   end
+
+  private
+
+  def portfolio_params
+    params.require(:portfolio).permit(:title, 
+                                      :subtitle, 
+                                      :body,
+                                      technologies_attributes: [:name])
+  end
+  
 end
