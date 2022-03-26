@@ -8,8 +8,7 @@
 
     <meta name="keywords" content="<%= @seo_keywords %>" />
 
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "portfolios", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -33,9 +32,9 @@
     <% end %>
 
     <%= yield %>
-    
+
     <% if session[:source]%>
-    <p>Thanks for visiting me from <%= session[:source] %></p>
+      <p>Thanks for visiting me from <%= session[:source] %></p>
     <% end %>
   </body>
 </html>
