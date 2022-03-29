@@ -4,11 +4,4 @@
 
 <%= link_to "Create New Item", new_portfolio_url %>
 
-<% @portfolio_items.each do |i| %>
-    <p><%= link_to i.title, portfolio_show_path(i) %></p>
-    <p> <%= i.subtitle %></p>
-    <p><%= i.body %></p>
-    <%= image_tag i.thumb_image unless i.thumb_image.nil? %>
-    <%= link_to "Edit", edit_portfolio_path(i) %>
-    <%= button_to "Delete Record", portfolio_path(i), method: "delete", data: { confirm: "Are you sure?" } %>
-<% end %> 
+<% render portfolio_item %>
